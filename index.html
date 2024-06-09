@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="icon" type="image/svg" sizes="32x32" href="./assets/images/home-outline.svg">
+  <link rel="stylesheet" href="./css/global.css">
+  <!-- <link rel="stylesheet" href="./css/style.css"> -->
+  <!-- <link rel="stylesheet" href="./css/media.css"> -->
+
+  <title>Home</title>
+</head>
+
+<body>
+
+  <header class="header">
+    <section class="container">
+      <div class="header__inner">
+        <div class="theme__btn">
+          <img class="theme__light" src="./assets/images/icon-sun-dark.svg" alt="light"></img>
+          <label class="theme__switch" for="switch__input">
+            <input type="checkbox" id="switch__input">
+            <span class="switch__slider"></span>
+          </label>
+          <img class="theme__dark" src="./assets/images/icon-moon-dark.svg" alt="dark"></img>
+        </div>
+      </div>
+    </section>
+  </header>
+
+  <main class="main">
+    <section class="container">
+      <div class="info">
+        <div class="info__title">
+          <h1>Welcome to the <span>Frontend Quiz!</span></h1>
+          <p>Pick a subject to get started</p>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script type="module" src="./js/mainPage.js"></script>
+</body>
+
+</html>
+
+<!-- TODO: CSS
+    1. Ознайомитись з CSS Nesting 
+    1.1 Flex-grow shrink basis
+    2. В проекті використовувати CSS-змінні для кольрів
+    3. Шрифти підключити файлами через font-face
+    4. Медіа-стилі винести в окремий файл
+  -->
