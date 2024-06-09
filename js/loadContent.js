@@ -98,7 +98,7 @@ function quizOptions(options) {
   options.forEach((option, i) => {
     const optionBtn = document.createElement("button");
     optionBtn.className = "quiz__answer btn__base";
-    optionBtn.innerHTML = `<span class="quiz__variants">${variants[i]}</span><span class="option">${option}</span>`; //метод перетворення в
+    optionBtn.innerHTML = `<span class="quiz__variants">${variants[i]}</span><span class="option">${option}</span>`;
     answersContainer.appendChild(optionBtn);
     // console.log(`Додано елемент номер ${option}`);
   });
@@ -127,14 +127,14 @@ export function showCorrectIncorrectAnswer(
 
   let answerImgCorrect = document.createElement("img");
   answerImgCorrect.className = "correct__incorrect-img";
-  answerImgCorrect.src = "../assets/images/icon-correct.svg";
+  answerImgCorrect.src = "./assets/images/icon-correct.svg";
   answerImgCorrect.alt = "correct";
   if (typeAnswer == true) {
     btnContainer.appendChild(answerImgCorrect);
   } else if (typeAnswer == false) {
     const answerImgIncorrect = document.createElement("img");
     answerImgIncorrect.className = "correct__incorrect-img";
-    answerImgIncorrect.src = "../assets/images/icon-incorrect.svg";
+    answerImgIncorrect.src = "./assets/images/icon-incorrect.svg";
     answerImgIncorrect.alt = "incorrect";
 
     for (let i = 0; i < allAnswerBtns.length; i++) {
