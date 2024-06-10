@@ -1,4 +1,4 @@
-export function insertThemeQuiz(titleContent) {
+export function insertThemeQuiz(titleContent, category) {
   const quizPageHeader = document.querySelector(".header__inner");
   const quizTheme = document.createElement("div");
 
@@ -6,12 +6,10 @@ export function insertThemeQuiz(titleContent) {
   let endIndex = titleContent.indexOf(">", startIndex) + 1;
   let themeImg = titleContent.substring(startIndex, endIndex);
 
-  let themeText = titleContent.slice(endIndex, titleContent.length);
-
   quizTheme.className = "quiz__type";
   quizTheme.innerHTML = `
   <div class="type__img">${themeImg}</div>
-  <h2 class="type__title">${themeText}</h2>
+  <h2 class="type__title">${category}</h2>
   `;
 
   quizPageHeader.insertBefore(quizTheme, document.querySelector(".theme__btn"));
@@ -36,10 +34,7 @@ export function insertMainPageContent(data) {
   infoContainer.appendChild(quizCategories);
 }
 
-export function insertQuizPageContent(count, randomQuestionNumber, questionsArr) {//, stepQuestion
-  //let questionsCategoryArr = getCurrentCategoryInfo(data, category);
-
-  console.log(randomQuestionNumber);
+export function insertQuizPageContent(count, randomQuestionNumber, questionsArr) {
 
   const quizContainer = document.querySelector(".quiz__container");
   const quizInner = document.createElement("div");
@@ -63,14 +58,12 @@ export function insertQuizPageContent(count, randomQuestionNumber, questionsArr)
   quizContainer.appendChild(quizInner);
 }
 
-export function insertResultPageContent(titleContent, correctAnswers) {
+export function insertResultPageContent(titleContent, correctAnswers, category) {
   const resultContainer = document.querySelector(".info__result");
 
   let startIndex = titleContent.indexOf("<img");
   let endIndex = titleContent.indexOf(">", startIndex) + 1;
   let themeImg = titleContent.substring(startIndex, endIndex);
-
-  let themeText = titleContent.slice(endIndex, titleContent.length);
 
   const quizResult = document.createElement("div");
   quizResult.className = "quiz__result";
@@ -78,7 +71,7 @@ export function insertResultPageContent(titleContent, correctAnswers) {
   <div class="quiz__score">
       <div class="quiz__type">
         <div class="type__img">${themeImg}</div>
-        <h2 class="type__title">${themeText}</h2>
+        <h2 class="type__title">${category}</h2>
       </div>
       <div class="score">
         <p class="score__points">${correctAnswers}</p>
@@ -87,7 +80,6 @@ export function insertResultPageContent(titleContent, correctAnswers) {
   </div>
   <button class="play__again btn__base-action">Play Again</button>
   `;
-  //${correctCount}
   resultContainer.appendChild(quizResult);
 }
 
@@ -100,7 +92,6 @@ function quizOptions(options) {
     optionBtn.className = "quiz__answer btn__base";
     optionBtn.innerHTML = `<span class="quiz__variants">${variants[i]}</span><span class="option">${option}</span>`;
     answersContainer.appendChild(optionBtn);
-    // console.log(`Додано елемент номер ${option}`);
   });
   return answersContainer.outerHTML;
 }
@@ -123,8 +114,7 @@ export function showCorrectIncorrectAnswer(
   questions,
   randomQuestionNumber
 ) {
-  // console.log("Відповідь з нажатої кнопки", btnContainer.querySelector(".option").textContent)
-
+ 
   let answerImgCorrect = document.createElement("img");
   answerImgCorrect.className = "correct__incorrect-img";
   answerImgCorrect.src = "./assets/images/icon-correct.svg";
@@ -138,22 +128,10 @@ export function showCorrectIncorrectAnswer(
     answerImgIncorrect.alt = "incorrect";
 
     for (let i = 0; i < allAnswerBtns.length; i++) {
-      // console.log(questionsArr[count].answer)
       if (allAnswerBtns[i].querySelector(".option").textContent === questions[randomQuestionNumber].answer.replace(/&lt;/g, "<").replace(/&gt;/g, ">")) {
-      // console.log("Відповідь з кнопки (правильна відповідь)", allAnswerBtns[i].querySelector(".option").textContent)
-      // console.log("Відповідь з файлу json (правильна відповідь)", questionsArr[count].answer)
-
         allAnswerBtns[i].appendChild(answerImgCorrect);
-        // console.log(`На якій кнопці додається відповідь ${i} ${allAnswerBtns[i]}`)
       }
     }
-
-    // allAnswerBtns.forEach((answerBtn) => {
-    //   if (answerBtn.querySelector(".option").textContent === questionsArr[count].answer) {
-    //     answerBtn.appendChild(answerImgCorrect);
-    //   }
-    // });
-
     btnContainer.appendChild(answerImgIncorrect);
   }
 }
