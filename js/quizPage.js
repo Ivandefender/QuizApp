@@ -8,14 +8,23 @@ import {
 import { addContent, toggleTheme } from "./global.js";
 
 const importQuizData = await addContent();
+
+const params = new URLSearchParams(window.location.search)
+if(!params.size){
+  window.location.href = `./index.html`;
+}
+
 const category = new URLSearchParams(window.location.search).get("category");
 const contentTheme = new URLSearchParams(window.location.search).get("content");
 let currentTheme = new URLSearchParams(window.location.search).get("theme");
 
+let themeInStorage = localStorage.getItem('theme');
 toggleTheme(null, currentTheme);
 const themeBtn = document.getElementById("switch__input");
 themeBtn.addEventListener("click", () => {
   currentTheme = toggleTheme(themeBtn.checked); 
+  localStorage.setItem('theme', currentTheme);
+  themeInStorage = localStorage.getItem('theme');
 });
 
 insertThemeQuiz(contentTheme, category);
@@ -92,7 +101,7 @@ function submitAnswer() {
       const nextAnswerBtnEvent = document.getElementById("nextQuestion");
       nextAnswerBtnEvent.textContent = "Show results";
       nextAnswerBtnEvent.addEventListener("click", () => {
-        window.location.href = `./result.html?category=${category}&result=${countCorrectAnswers}&content=${contentTheme}&theme=${currentTheme}`;
+        window.location.href = `./result.html?category=${category}&result=${countCorrectAnswers}&content=${contentTheme}&theme=${themeInStorage}`;
       });
     }
   });

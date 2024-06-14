@@ -47,7 +47,7 @@ export function insertQuizPageContent(count, randomQuestionNumber, questionsArr)
       <p class="question">${questionsArr[randomQuestionNumber].question}</p>
     </div>
     <div class="quiz__progress">
-      <progress class="progress__bar" max="9" value="${count}"></progress>
+      <progress class="progress__bar" max="10" value="${count + 1}"></progress>
     </div>
   </div>
   <div class="quiz__answers-inner">
