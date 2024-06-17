@@ -23,6 +23,15 @@ insertMainPageContent(importQuizData);
 const btnCategories = document.querySelectorAll(".btn__base");
 btnCategories.forEach((btn) => {
   btn.addEventListener("click", () => {
-    window.location.href = `./quiz_page.html?category=${btn.textContent}&content=${btn.innerHTML}&theme=${themeInStorage}`;
+
+    let ImgStartIndex = btn.innerHTML.indexOf("<img");
+    let ImgEndIndex = btn.innerHTML.indexOf(">", ImgStartIndex) + 1;
+    let categoryImg = btn.innerHTML.substring(ImgStartIndex, ImgEndIndex);
+
+    let spanTagIndex = btn.innerHTML.indexOf("<span", ImgEndIndex);
+    let onlyCategoryText = btn.innerHTML.substring(ImgEndIndex, spanTagIndex).trim();
+
+    window.location.href = `./quiz_page.html?category=${onlyCategoryText}&categoryImg=${categoryImg}&theme=${themeInStorage}`;
   });
 });
+

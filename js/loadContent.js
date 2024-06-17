@@ -1,14 +1,10 @@
-export function insertThemeQuiz(titleContent, category) {
+export function insertThemeQuiz(titleImg, category) {
   const quizPageHeader = document.querySelector(".header__inner");
   const quizTheme = document.createElement("div");
 
-  let startIndex = titleContent.indexOf("<img");
-  let endIndex = titleContent.indexOf(">", startIndex) + 1;
-  let themeImg = titleContent.substring(startIndex, endIndex);
-
   quizTheme.className = "quiz__type";
   quizTheme.innerHTML = `
-  <div class="type__img">${themeImg}</div>
+  <div class="type__img">${titleImg}</div>
   <h2 class="type__title">${category}</h2>
   `;
 
@@ -28,14 +24,18 @@ export function insertMainPageContent(data) {
     categoryBtn.className = `btn__base`;
     categoryBtn.innerHTML = `<img class="category__img" id="${title.toLowerCase()}__category" src="${
       data.quizzes[i].icon
-    }" alt="${title}">${title}`;
+    }" alt="Quiz category - ${title}">${title}<span class="category__questions">${data.quizzes[i].questions.length}</span>`; 
+
     quizCategories.appendChild(categoryBtn);
   }
   infoContainer.appendChild(quizCategories);
 }
 
-export function insertQuizPageContent(count, randomQuestionNumber, questionsArr) {
-
+export function insertQuizPageContent(
+  count,
+  randomQuestionNumber,
+  questionsArr
+) {
   const quizContainer = document.querySelector(".quiz__container");
   const quizInner = document.createElement("div");
   quizInner.className = "info__quiz";
@@ -43,7 +43,7 @@ export function insertQuizPageContent(count, randomQuestionNumber, questionsArr)
   quizInner.innerHTML = `
   <div class="quiz__question">
     <div>
-      <p class="questions__count">Question ${count + 1} of ${questionsArr.length}</p> 
+      <p class="questions__count">Question ${count + 1} of 10</p> 
       <p class="question">${questionsArr[randomQuestionNumber].question}</p>
     </div>
     <div class="quiz__progress">
@@ -58,19 +58,19 @@ export function insertQuizPageContent(count, randomQuestionNumber, questionsArr)
   quizContainer.appendChild(quizInner);
 }
 
-export function insertResultPageContent(titleContent, correctAnswers, category) {
+export function insertResultPageContent(
+  titleImg,
+  correctAnswers,
+  category
+) {
   const resultContainer = document.querySelector(".info__result");
-
-  let startIndex = titleContent.indexOf("<img");
-  let endIndex = titleContent.indexOf(">", startIndex) + 1;
-  let themeImg = titleContent.substring(startIndex, endIndex);
 
   const quizResult = document.createElement("div");
   quizResult.className = "quiz__result";
   quizResult.innerHTML = `
   <div class="quiz__score">
       <div class="quiz__type">
-        <div class="type__img">${themeImg}</div>
+        <div class="type__img">${titleImg}</div>
         <h2 class="type__title">${category}</h2>
       </div>
       <div class="score">
@@ -114,7 +114,6 @@ export function showCorrectIncorrectAnswer(
   questions,
   randomQuestionNumber
 ) {
- 
   let answerImgCorrect = document.createElement("img");
   answerImgCorrect.className = "correct__incorrect-img";
   answerImgCorrect.src = "./assets/images/icon-correct.svg";
@@ -128,7 +127,12 @@ export function showCorrectIncorrectAnswer(
     answerImgIncorrect.alt = "incorrect";
 
     for (let i = 0; i < allAnswerBtns.length; i++) {
-      if (allAnswerBtns[i].querySelector(".option").textContent === questions[randomQuestionNumber].answer.replace(/&lt;/g, "<").replace(/&gt;/g, ">")) {
+      if (
+        allAnswerBtns[i].querySelector(".option").textContent ===
+        questions[randomQuestionNumber].answer
+          .replace(/&lt;/g, "<")
+          .replace(/&gt;/g, ">")
+      ) {
         allAnswerBtns[i].appendChild(answerImgCorrect);
       }
     }

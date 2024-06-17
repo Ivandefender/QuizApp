@@ -7,7 +7,7 @@ if(!params.size){
 }
 
 const countCorrectAnswers = new URLSearchParams(window.location.search).get("result");
-const contentTheme = new URLSearchParams(window.location.search).get("content");
+const categoryImg = new URLSearchParams(window.location.search).get("categoryImg");
 const category = new URLSearchParams(window.location.search).get("category");
 let currentTheme = new URLSearchParams(window.location.search).get("theme");
 
@@ -20,9 +20,9 @@ themeBtn.addEventListener("click", () => {
   themeInStorage = localStorage.getItem('theme');
 });
 
-insertThemeQuiz(contentTheme, category);
+insertThemeQuiz(categoryImg, category);
 
-insertResultPageContent(contentTheme, countCorrectAnswers, category); 
+insertResultPageContent(categoryImg, countCorrectAnswers, category); 
 
 const btnAgainQuiz = document.querySelector(".play__again");
 btnAgainQuiz.addEventListener("click", () =>{

@@ -15,7 +15,7 @@ if(!params.size){
 }
 
 const category = new URLSearchParams(window.location.search).get("category");
-const contentTheme = new URLSearchParams(window.location.search).get("content");
+const categoryImg = new URLSearchParams(window.location.search).get("categoryImg");
 let currentTheme = new URLSearchParams(window.location.search).get("theme");
 
 let themeInStorage = localStorage.getItem('theme');
@@ -27,7 +27,7 @@ themeBtn.addEventListener("click", () => {
   themeInStorage = localStorage.getItem('theme');
 });
 
-insertThemeQuiz(contentTheme, category);
+insertThemeQuiz(categoryImg, category);
 
 let countQuestions = 0;
 let countCorrectAnswers = 0;
@@ -101,7 +101,7 @@ function submitAnswer() {
       const nextAnswerBtnEvent = document.getElementById("nextQuestion");
       nextAnswerBtnEvent.textContent = "Show results";
       nextAnswerBtnEvent.addEventListener("click", () => {
-        window.location.href = `./result.html?category=${category}&result=${countCorrectAnswers}&content=${contentTheme}&theme=${themeInStorage}`;
+        window.location.href = `./result.html?category=${category}&result=${countCorrectAnswers}&categoryImg=${categoryImg}&theme=${themeInStorage}`;
       });
     }
   });
@@ -116,6 +116,10 @@ function checkAnswer(
 ) {
   let isCorrectAnswer = null;
 
+  answerOptions.forEach(option => {
+    option.classList.add("hover__disable")
+  });
+  
   if (
     answerBtn.querySelector(".option").textContent ===
     questionsArr[randomQuestionNumber].answer
