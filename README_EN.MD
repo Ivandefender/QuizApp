@@ -2,7 +2,7 @@
 
 <div align="center">
     <a href="https://ivandefender.github.io/QuizApp/">View Project |</a>
-    <a href="https://github.com/Ivandefender/QuizApp/tree/main/js">View Code</a>
+    <a href="https://github.com/Ivandefender/QuizApp">View Code</a>
 </div>
 
 <p align="center">
